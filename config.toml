@@ -1,11 +1,12 @@
-baseurl = "https://www.example.com/"
+baseurl = "/"
 languageCode = "en-us"
-title = "Blackburn Theme Demo"
+title = "Saut d'R"
 theme = "blackburn"
-author = "Yoshiharu Yamashita"
-copyright = "&copy; 2016. All rights reserved."
+author = "Cécile Sauder"
+copyright = "&copy; 2018. All rights reserved."
 canonifyurls = true
 paginate = 10
+
 
 [indexes]
   tag = "tags"
@@ -13,8 +14,8 @@ paginate = 10
 
 [params]
   # Shown in the home page
-  subtitle = "A Hugo Theme"
-  brand = "Blackburn"
+  subtitle = "data science with R blog"
+  brand = "Saut d'R"
   googleAnalytics = "Your Google Analytics tracking ID"
   disqus = "Your Disqus shortname"
   # CSS name for highlight.js
@@ -26,33 +27,43 @@ paginate = 10
   [[menu.main]]
     name = "Home"
     pre = "<i class='fa fa-home fa-fw'></i>"
-    weight = 1
+    weight = 0
     identifier = "home"
     url = "/"
   [[menu.main]]
     name = "Posts"
     pre = "<i class='fa fa-list fa-fw'></i>"
-    weight = 2
+    weight = 1
     identifier = "post"
     url = "/post/"
   [[menu.main]]
     name = "About"
     pre = "<i class='fa fa-user fa-fw'></i>"
-    weight = 3
+    weight = 2
     identifier = "about"
     url = "/about/"
   [[menu.main]]
+    name = "Topics"
+    pre = "<i class='fa fa-folder fa-fw'></i>"
+    weight = 3
+    identifier = "topic"
+    url = "/topics/"
+  [[menu.main]]
+    name = "Tags"
+    pre = "<i class='fa fa-tags fa-fw'></i>"
+    weight = 4
+    identifier = "tag"
+    url = "/tags/"
+  [[menu.main]]
     name = "Contact"
     pre = "<i class='fa fa-phone fa-fw'></i>"
-    weight = 4
+    weight = 5
     url = "/contact/"
 
 [social]
   # Link your social networking accouns to the side menu
   # by entering your username or ID.
-  twitter = "*"
-  facebook = "*"
-  instagram = "*"
-  github = "yoshiharuyamashita"
-  stackoverflow = "*"
-  linkedin = "*"
+  twitter = "cecilesauder"
+  linkedin = "cecilesauder"
+  instagram = "bubububulle"
+  github = "cecilesauder"
