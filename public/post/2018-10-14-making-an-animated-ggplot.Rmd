@@ -171,7 +171,7 @@ I just have to change `ylim` of the ggplot because `min(y3) < min(y)`
 ```{r, fig.height = 3, fig.width = 4}
 
 gg <- gg + 
-  ylim(min(y3),max(y)) +
+  ylim(min(y3)-0.2,max(y)) +
   geom_image(data = d2, aes(x=x3, y=y3, image = hex3), size = .1, by = 'height')
 
 gg
@@ -185,5 +185,6 @@ Yes ! It's better like this. If you love the result you can save it with `anim_s
 #anim_save("saut_dR.gif")
 
 ```
+
 
 ##That's all for today `r emo::ji("kiss")`

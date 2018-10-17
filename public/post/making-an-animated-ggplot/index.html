@@ -381,7 +381,7 @@ d2 &lt;- d2 %&gt;%
   mutate(hex3 = hex3)</code></pre>
 <p>Once the column with the files names added to the tibble, we can plot it. I just have to change <code>ylim</code> of the ggplot because <code>min(y3) &lt; min(y)</code></p>
 <pre class="r"><code>gg &lt;- gg + 
-  ylim(min(y3),max(y)) +
+  ylim(min(y3)-0.2,max(y)) +
   geom_image(data = d2, aes(x=x3, y=y3, image = hex3), size = .1, by = &#39;height&#39;)</code></pre>
 <pre><code>## Warning: Ignoring unknown parameters: image_colour</code></pre>
 <pre class="r"><code>gg</code></pre>
