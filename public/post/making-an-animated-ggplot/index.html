@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.42.2" />
+
+  <title>Making an animated ggplot &middot; Saut d&#39;R</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="/">Saut d'R</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/topics/"><i class='fa fa-folder fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/tags/"><i class='fa fa-tags fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/contact/"><i class='fa fa-phone fa-fw'></i>Contact</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://twitter.com/cecilesauder" target="_blank"><i class="fa fa-twitter-square fa-fw"></i>Twitter</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://instagram.com/bubububulle" target="_blank"><i class="fa fa-instagram fa-fw"></i>Instagram</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/cecilesauder" target="_blank"><i class="fa fa-linkedin-square fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/cecilesauder" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2018. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Making an animated ggplot</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>14 Oct 2018, 00:00</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="/tags/gganimate">gganimate</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/ggimage">ggimage</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/ggplot2">ggplot2</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/magick">magick</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="/tags/tidyverse">tidyverse</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>I decide to talk about how I make my awesome blog banner in this first post. 😄</p>
+<div id="why-this-banner" class="section level1">
+<h1>Why this banner ?</h1>
+<p>It’s a french word game with my family name Sauder =&gt; Saut d’R (R jump in english). That’s why I decided to make a banner with the R-logo jumping on some (so cool) stickers. I choose stickers of packages that I use to do this animated ggplot.</p>
+</div>
+<div id="which-packages" class="section level1">
+<h1>Which packages ?</h1>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     
+## ✔ tibble  1.4.2          ✔ dplyr   0.7.6     
+## ✔ tidyr   0.8.1          ✔ stringr 1.3.1     
+## ✔ readr   1.1.1          ✔ forcats 0.3.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>#setRepositories(ind=1:2)
+## install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;GuangchuangYu/ggimage&quot;)
+library(ggimage)
+
+library(magick)</code></pre>
+<pre><code>## Linking to ImageMagick 6.9.7.4
+## Enabled features: fontconfig, freetype, fftw, lcms, pango, x11
+## Disabled features: cairo, ghostscript, rsvg, webp</code></pre>
+<pre class="r"><code>#devtools::install_github(&#39;thomasp85/gganimate&#39;)
+library(gganimate)</code></pre>
+<p>Firstly, I always use the <strong>tidyverse</strong> package, because it contains <strong>dplyr</strong>, <strong>ggplot2</strong>, <strong>purrr</strong>… and some others unavoidable packages.</p>
+<p>Then, to deal with images, my favorite package is <a href="https://ropensci.org/tutorials/magick_tutorial/"><strong>magick</strong></a>, an other unavoidable package ! It allows to read/write/transform/convert images, and to make some beautiful GIF too. See the vignette for more informations, it’s really cool.</p>
+<p>To replace <strong>ggplot2</strong> points by some images, I find the <a href="https://cran.r-project.org/web/packages/ggimage/vignettes/ggimage.html"><strong>ggimage</strong></a> package. And to animate these images, the <a href="https://github.com/thomasp85/gganimate"><strong>gganimated</strong></a> package.</p>
+</div>
+<div id="jumping-trajectory" class="section level1">
+<h1>Jumping trajectory</h1>
+<p>This part is not very interesting and you probably do this better, but it’s just about describing jumps with data.</p>
+<pre class="r"><code>x0 &lt;- -8:8
+y &lt;- rep((-x0^2)/100 +1 ,3 )
+y &lt;- y + seq(0,3, length.out = length(y))
+y &lt;- c(y, rev(y))
+
+#just to have a look
+plot(y)</code></pre>
+<p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="get-images-and-tidy-data" class="section level1">
+<h1>Get images and tidy data</h1>
+<p>Firstly, a tibble (a tidy data.frame if you don’t know yet) with the R trajectory <code>y</code>, the abscissa <code>x</code> and <code>x1</code> which will serve to animate R, and the R logo url directory in <code>image</code>.</p>
+<pre class="r"><code>ly &lt;- length(y)
+
+#first tibble for R trajectory
+d &lt;- tibble(
+x = 1:ly,
+x1 = 1:ly,
+y = y,
+image = rep(&quot;https://www.r-project.org/logo/Rlogo.png&quot;,ly)
+)</code></pre>
+<p>Then I decide to make a local copy of the R logo image, resizing it at 200px for witdh, because even if <strong>ggimage</strong> can deal with url images, it took a long time to do this with the 102 images. So I use the <strong>magick</strong> package to <code>read</code>, <code>scale</code>, and <code>write</code> the R logo.</p>
+<pre class="r"><code>#local copy of Rlogo
+&quot;https://www.r-project.org/logo/Rlogo.png&quot; %&gt;%
+  image_read() %&gt;%
+  image_scale(&quot;200&quot;) %&gt;%
+  image_write(&quot;Rlogo.png&quot;)</code></pre>
+<p>I add the column <code>image2</code> to the tibble with the name of the R logo file.</p>
+<pre class="r"><code>d &lt;- d %&gt;%
+  mutate(image2 = rep(&quot;Rlogo.png&quot;,ly))</code></pre>
+</div>
+<div id="display-and-animate-the-r-logo" class="section level1">
+<h1>Display and animate the R logo</h1>
+<p>Now we have all we need to animate the R logo. So let’s test this !</p>
+<p>Firstly just with <code>geom_image</code> :</p>
+<pre class="r"><code>options(gganimate.dev_args = list(width = 400, height = 300))
+
+gg &lt;- ggplot(d, aes(x, y)) + 
+  geom_image(aes(image=image2), size=.1 , by = &#39;width&#39;) </code></pre>
+<pre><code>## Warning: Ignoring unknown parameters: image_colour</code></pre>
+<pre class="r"><code>gg</code></pre>
+<p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-6-1.png" width="672" /> It seems to work, so now, let’s animate this logo, after quiting lines and grey background with <code>theme_nothing</code>. For now, I test the “linear” ease but others are available and describe in the function <code>ease_aes</code> help.</p>
+<pre class="r"><code>gg &lt;- gg +
+  theme_nothing() +
+  transition_time(x1) +
+  ease_aes(&#39;linear&#39;)
+
+gg</code></pre>
+<p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-7-1.gif" /><!-- --></p>
+</div>
+<div id="add-the-stickers-on-the-plot" class="section level1">
+<h1>Add the stickers on the plot</h1>
+<p>Now let’s add the stickers. I make an other tibble to deal with a different <code>aes</code> in <code>ggplot</code>. I put the url directory of some beautiful stickers.</p>
+<pre class="r"><code>x3 = seq(0,ly, by = length(x0))
+y3 = c(0.36,d$y[x3])
+y3 = y3 - 0.4
+
+d2 &lt;- tibble(
+x3 = x3+2,
+y3 = y3,
+
+hex = c(
+&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/blogdown.png&quot;,
+&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/devtools.png&quot;,
+&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/tibble.png&quot;,
+&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/pipe.png&quot;,
+&quot;https://github.com/thomasp85/gganimate/raw/master/man/figures/logo.png&quot;,
+&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png&quot;,
+&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png&quot;
+)
+)</code></pre>
+<p>Now the part using <strong>magick</strong> to locally copy the images. To process all the images at once, I use the <code>map2_chr</code> function of the <strong>purrr</strong> package</p>
+<pre class="r"><code>d2$hex %&gt;%
+  image_read() %&gt;%
+  image_scale(&quot;200&quot;) -&gt; hex2</code></pre>
+<p><code>hex2</code> il a tibble, so I transform it in a list to give it to <code>map2_chr</code>. Why <code>map2_chr</code> and not just <code>map2</code> ? Because I want characters 😄</p>
+<p>You can do the same with <code>map2</code> if you <code>unlist</code> the result.</p>
+<pre class="r"><code>hex3 &lt;- map2_chr(as.list(hex2), basename(d2$hex), image_write)
+
+d2 &lt;- d2 %&gt;%
+  mutate(hex3 = hex3)</code></pre>
+<p>Once the column with the files names added to the tibble, we can plot it. I just have to change <code>ylim</code> of the ggplot because <code>min(y3) &lt; min(y)</code></p>
+<pre class="r"><code>gg &lt;- gg + 
+  ylim(min(y3),max(y)) +
+  geom_image(data = d2, aes(x=x3, y=y3, image = hex3), size = .1, by = &#39;height&#39;)</code></pre>
+<pre><code>## Warning: Ignoring unknown parameters: image_colour</code></pre>
+<pre class="r"><code>gg</code></pre>
+<p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-11-1.gif" /><!-- --></p>
+<p>Yes ! It’s better like this. If you love the result you can save it with <code>anim_save</code>.</p>
+<pre class="r"><code>#anim_save(&quot;saut_dR.gif&quot;)</code></pre>
+<div id="thats-all-for-today" class="section level2">
+<h2>That’s all for today 💋</h2>
+</div>
+</div>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'Your Disqus shortname';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+</div>
+</div>
+<script src="/js/ui.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'Your Google Analytics tracking ID', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+
