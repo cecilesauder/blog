@@ -18,6 +18,12 @@
   </url>
   
   <url>
+    <loc>/topics/data-visualization/</loc>
+    <lastmod>2018-10-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/gganimate/</loc>
     <lastmod>2018-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -67,6 +73,7 @@
   
   <url>
     <loc>/topics/</loc>
+    <lastmod>2018-10-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
