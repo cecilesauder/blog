@@ -24,7 +24,7 @@ Some data science stuff with R. I like testing some packages, trying that I disc
 
 ## Professionaly 
 
-I let you watch my resume if you want more details, but for now I'm going to start a new job/adventure working for Kapa IT at Royal Canin, as a R&D data scientist. Very exciting and challenging !
+I let you watch my [resume](/cv.pdf) (sorry it's only in french for the moment) if you want more details, but for now I'm going to start a new job/adventure working for Kapa IT at Royal Canin, as a R&D data scientist. Very exciting and challenging !
 
 ## Personnaly 
 
@@ -50,7 +50,7 @@ Des trucs de data science avec R. J'aime tester des packages, essayer ce que je 
 
 ## Professionnellement
 
-Je vous laisse regarder mon CV si vous louvez plus de détails, mais pour le moment je vais commencer une nouvelle aventure en travaillant pour Kapa IT en mission pour Royal Canin comme R&D data scientist. Un nouveau défi très excitant !
+Je vous laisse regarder mon [CV](/cv.pdf) si vous louvez plus de détails, mais pour le moment je vais commencer une nouvelle aventure en travaillant pour Kapa IT en mission pour Royal Canin comme R&D data scientist. Un nouveau défi très excitant !
 
 ## Personnellement
 
