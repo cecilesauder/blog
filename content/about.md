@@ -2,11 +2,56 @@
 title = "About"
 date = "2018-10-13"
 sidemenu = "true"
-description = "About me and this site"
+description = "About me and this blog"
 +++
 
+# About this blog
 
 At the general request of 3 people on Twitter... Here is my blog!
 
--------------------------------------------------------------------
+## Why this blog ?
+
+For reproducibility !
+
+To share with R community but also for me, to organise what I do and to have a chance to recover what I had already coded but don't remember how...
+
+## What's in it ? 
+
+Some data science stuff with R. I like testing some packages, trying that I discover in conferences and workshops. Maybe it could be interesting for someone, so I share it with you. 
+
+
+# About me 
+
+## Professionaly 
+
+I let you watch my resume if you want more details, but for now I'm going to start a new job/adventure working for Kapa IT at Royal Canin, as a R&D data scientist. Very exciting and challenging !
+
+## Personnaly 
+
+I have an awesome baby girl. She's 15 monts old and she already went to two R-conferences ! 
+
+--------------------------------same in french-----------------------------------
+
+# A propos de ce blog
+
 A la demande générale de 3 personnes sur Twitter... Voici mon blog !
+
+## Pourquoi ce blog ?
+
+Pour la reproductibilité !
+
+Pour partager avec la communauté des utilisateurs de R, mais aussi pour moi, pour organiser ce que je fais et avoir une chance de retrouver ce que j'ai déjà programmé mais dont j'ai oublié comment...
+
+## Qu'il y t-il dedans ? 
+
+Des trucs de data science avec R. J'aime tester des packages, essayer ce que je découvre lors de conférences ou tutoriels. Peut-être que ça peut intéresser quelqu'un, donc je vous le partage. 
+
+# A propos de moi
+
+## Professionnellement
+
+Je vous laisse regarder mon CV si vous louvez plus de détails, mais pour le moment je vais commencer une nouvelle aventure en travaillant pour Kapa IT en mission pour Royal Canin comme R&D data scientist. Un nouveau défi très excitant !
+
+## Personnellement
+
+J'ai une merveilleuse petite fille. Elle a 15 mois et est déjà allée à 2 conférences sur R. 
