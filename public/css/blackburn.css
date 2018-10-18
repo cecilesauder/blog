@@ -1,5 +1,7 @@
 .header {
-  font-family: "Raleway", Helvetica, Arial, sans-serif
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  text-shadow: #660066 1px 0 5px;  background-color: #cc99cc;
+  background-image: url("/img/banner.gif");
 }
 
 a {
