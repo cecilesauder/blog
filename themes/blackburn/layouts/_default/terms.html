@@ -1,9 +1,10 @@
 {{ partial "header.html" . }}
 
 <div class="header">
-  <h1>{{ .Title }}</h1>
+
 </div>
 <div class="content">
+  <h1 class="myheader">{{ .Title }}</h1>
   <ul>
   {{ $data := .Data }}
   {{ range $key, $value := .Data.Terms.ByCount }}

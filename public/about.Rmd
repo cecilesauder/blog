@@ -3,7 +3,7 @@ title: "About"
 author: Cécile Sauder
 date: "2018-10-13"
 sidemenu: "true"
-description: "About me and this blog"
+
 ---
 
 # About this blog

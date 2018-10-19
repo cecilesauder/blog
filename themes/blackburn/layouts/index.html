@@ -1,11 +1,13 @@
 {{ partial "header.html" . }}
 
 <div class="header">
-  <h1>{{ .Title }}</h1>
-  <h2>{{ .Site.Params.subtitle }}</h2>
+
 </div>
 
 <div class="content">
+ 
+  <h2 class="myheader">{{ .Site.Params.subtitle }}</h2>
+  
   {{ range ( .Paginate (where .Data.Pages "Type" "post")).Pages }}
     {{ .Render "summary"}}
   {{ end }}
