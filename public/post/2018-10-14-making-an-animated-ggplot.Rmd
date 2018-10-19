@@ -18,7 +18,7 @@ I decide to talk about how I make my awesome blog banner in this first post. `r 
 
 # Why this banner ? 
 
-It's a french word game with my family name Sauder => Saut d'R (R jump in english). That's why I decided to make a banner with the R-logo jumping on some (so cool) stickers. I choose stickers of packages that I use to do this animated ggplot. 
+It's a french wordplay with my family name Sauder => Saut d'R (R jump in english). That's why I decided to make a banner with the R-logo jumping on some (so cool) stickers. I choose stickers of packages that I use to do this animated ggplot. 
 
 # Which packages ? 
 
@@ -35,7 +35,7 @@ library(magick)
 library(gganimate)
 ```
 
-Firstly, I always use the **tidyverse** package, because it contains **dplyr**, **ggplot2**, **purrr**... and some others unavoidable packages. 
+Firstly, I always use the **tidyverse** package, because it contains **dplyr**, **ggplot2**, **purrr**... and some other unavoidable packages. 
 
 Then, to deal with images, my favorite package is [**magick**](https://ropensci.org/tutorials/magick_tutorial/), an other unavoidable package ! It allows to read/write/transform/convert images, and to make some beautiful GIF too. See the vignette for more informations, it's really cool.
 

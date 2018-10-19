@@ -1,9 +1,10 @@
-+++
-title = "About"
-date = "2018-10-13"
-sidemenu = "true"
-description = "About me and this blog"
-+++
+---
+title: "About"
+author: Cécile Sauder
+date: "2018-10-13"
+sidemenu: "true"
+description: "About me and this blog"
+---
 
 # About this blog
 
@@ -22,13 +23,19 @@ Some data science stuff with R. I like testing some packages, trying that I disc
 
 # About me 
 
-## Professionaly 
+## Professionally 
 
 I let you watch my [resume](/cv.pdf) (sorry it's only in french for the moment) if you want more details, but for now I'm going to start a new job/adventure working for Kapa IT at Royal Canin, as a R&D data scientist. Very exciting and challenging !
 
-## Personnaly 
+## Personally 
 
 I have an awesome baby girl. She's 15 monts old and she already went to two R-conferences ! 
+
+
+```{r, echo=FALSE, fig.cap="With other R-ladies at SatRdays Amsterdam 2018 (I'm the one with pink hair and a baby hanging on the breast)", out.width = '100%'}
+knitr::include_graphics("/img/aboutme1.jpg")
+```
+
 
 --------------------------------same in french-----------------------------------
 
@@ -54,4 +61,10 @@ Je vous laisse regarder mon [CV](/cv.pdf) si vous louvez plus de détails, mais 
 
 ## Personnellement
 
-J'ai une merveilleuse petite fille. Elle a 15 mois et est déjà allée à 2 conférences sur R. 
+J'ai une merveilleuse petite fille. Elle a 15 mois et est déjà allée à 2 conférences sur R.
+
+
+```{r, echo=FALSE, fig.cap="Avec d'autres R-ladies à SatRdays Amsterdam 2018 (Je suis celle avec les cheveux rose et un bébé pendu au sein )", out.width = '100%'}
+knitr::include_graphics("/img/aboutme1.jpg")
+```
+
