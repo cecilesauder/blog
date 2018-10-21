@@ -17,7 +17,7 @@ paginate = 10
   subtitle = "Data Science with R blog"
   brand = "Saut d'R"
   googleAnalytics = "Your Google Analytics tracking ID"
-  disqus = "Your Disqus shortname"
+  disqus = "cecilesauder"
   # CSS name for highlight.js
   highlightjs = "androidstudio"
   dateFormat = "02 Jan 2006, 15:04"
