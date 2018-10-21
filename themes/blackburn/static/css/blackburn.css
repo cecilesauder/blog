@@ -82,3 +82,7 @@ i {
 .pagination a {
   color: #265778;
 }
+
+.content{
+  max-width:70%;
+}

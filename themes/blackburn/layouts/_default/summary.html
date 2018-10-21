@@ -1,4 +1,8 @@
 <article>
+  <div style="float:left;width:30%;">
+    <img src={{.Params.header}}  width="100%" />  
+  </div>
+  <div style="float:right;width:70%;">
   <header>
     <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
 
@@ -15,4 +19,6 @@
     <a href="{{ .RelPermalink }}">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   {{ end }}
+  
+   </div>
 </article>

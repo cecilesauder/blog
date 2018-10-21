@@ -11,6 +11,7 @@ tags:
   - magick
   - tidyverse
 slug: making-an-animated-ggplot
+header: "post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-4-1.gif"
 ---
 
 I decide to talk about how I make my awesome blog banner in this first post. `r emo::ji("smile")`
