@@ -1,7 +1,7 @@
 ---
 title: Making an animated ggplot
 author: Cécile Sauder
-date: '2018-10-14'
+date: '2018-10-17'
 topics:
   - Data Visualization
 tags:
@@ -73,6 +73,7 @@ image = rep("https://www.r-project.org/logo/Rlogo.png",ly)
 )
 ```
 
+
 Then I decide to make a local copy of the R logo image, resizing it at 200px for witdh, because even if **ggimage** can deal with url images, it took a long time to do this with the `r ly` images. So I use the **magick** package to `read`, `scale`, and `write` the R logo. 
 
 
@@ -84,7 +85,9 @@ Then I decide to make a local copy of the R logo image, resizing it at 200px for
   image_write("Rlogo.png")
 ```
 
+
 I add the column `image2` to the tibble with the name of the R logo file.
+
 
 ```{r}
 d <- d %>%
@@ -107,7 +110,9 @@ gg <- ggplot(d, aes(x, y)) +
 
 gg
 ```
+
 It seems to work, so now, let's animate this logo, after quiting lines and grey background with `theme_nothing`. For now, I test the "linear" ease but others are available and describe in the function `ease_aes` help. 
+
 ```{r, fig.height = 3, fig.width = 4}
 gg <- gg +
   theme_nothing() +
@@ -183,6 +188,14 @@ Yes ! It's better like this. If you love the result you can save it with `anim_s
 ```{r}
 
 #anim_save("saut_dR.gif")
+
+```
+
+I remove images locally copied.
+
+```{r}
+
+unlink(c("Rlogo.png", hex3))
 
 ```
 

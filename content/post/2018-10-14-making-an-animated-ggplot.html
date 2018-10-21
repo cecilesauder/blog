@@ -1,7 +1,7 @@
 ---
 title: Making an animated ggplot
 author: Cécile Sauder
-date: '2018-10-14'
+date: '2018-10-17'
 topics:
   - Data Visualization
 tags:
@@ -23,12 +23,12 @@ slug: making-an-animated-ggplot
 <div id="which-packages" class="section level1">
 <h1>Which packages ?</h1>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
 <pre><code>## ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     
 ## ✔ tibble  1.4.2          ✔ dplyr   0.7.6     
 ## ✔ tidyr   0.8.1          ✔ stringr 1.3.1     
 ## ✔ readr   1.1.1          ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>#setRepositories(ind=1:2)
@@ -90,7 +90,8 @@ gg &lt;- ggplot(d, aes(x, y)) +
   geom_image(aes(image=image2), size=.1 , by = &#39;width&#39;) </code></pre>
 <pre><code>## Warning: Ignoring unknown parameters: image_colour</code></pre>
 <pre class="r"><code>gg</code></pre>
-<p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-6-1.png" width="672" /> It seems to work, so now, let’s animate this logo, after quiting lines and grey background with <code>theme_nothing</code>. For now, I test the “linear” ease but others are available and describe in the function <code>ease_aes</code> help.</p>
+<p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>It seems to work, so now, let’s animate this logo, after quiting lines and grey background with <code>theme_nothing</code>. For now, I test the “linear” ease but others are available and describe in the function <code>ease_aes</code> help.</p>
 <pre class="r"><code>gg &lt;- gg +
   theme_nothing() +
   transition_time(x1) +
@@ -139,6 +140,8 @@ d2 &lt;- d2 %&gt;%
 <p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-11-1.gif" /><!-- --></p>
 <p>Yes ! It’s better like this. If you love the result you can save it with <code>anim_save</code>.</p>
 <pre class="r"><code>#anim_save(&quot;saut_dR.gif&quot;)</code></pre>
+<p>I remove images locally copied.</p>
+<pre class="r"><code>unlink(c(&quot;Rlogo.png&quot;, hex3))</code></pre>
 <div id="thats-all-for-today" class="section level2">
 <h2>That’s all for today 💋</h2>
 </div>
