@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://cecilesauder.netlify.com"
 languageCode = "en-us"
 title = "Saut d'R"
 theme = "blackburn"
