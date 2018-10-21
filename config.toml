@@ -14,7 +14,7 @@ paginate = 10
 
 [params]
   # Shown in the home page
-  subtitle = "Data Science with R blog"
+  subtitle = "Saut d'R : Data Science with R blog"
   brand = "Saut d'R"
   googleAnalytics = "Your Google Analytics tracking ID"
   disqus = "cecilesauder"
