@@ -24,26 +24,25 @@ header: "post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chu
 <div id="which-packages" class="section level1">
 <h1>Which packages ?</h1>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     
-## ✔ tibble  1.4.2          ✔ dplyr   0.7.6     
-## ✔ tidyr   0.8.1          ✔ stringr 1.3.1     
-## ✔ readr   1.1.1          ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.0.0.9000      ✔ purrr   0.2.5      
+## ✔ tibble  1.4.2           ✔ dplyr   0.7.99.9000
+## ✔ tidyr   0.8.1.9000      ✔ stringr 1.3.1      
+## ✔ readr   1.1.1           ✔ forcats 0.3.0.9000</code></pre>
+<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>#setRepositories(ind=1:2)
-## install.packages(&quot;devtools&quot;)
-#devtools::install_github(&quot;GuangchuangYu/ggimage&quot;)
-library(ggimage)
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+# devtools::install_github(&quot;GuangchuangYu/ggimage&quot;)
+# devtools::install_github(&#39;thomasp85/gganimate&#39;)
 
+library(ggimage)
 library(magick)</code></pre>
-<pre><code>## Linking to ImageMagick 6.9.7.4
-## Enabled features: fontconfig, freetype, fftw, lcms, pango, x11
-## Disabled features: cairo, ghostscript, rsvg, webp</code></pre>
-<pre class="r"><code>#devtools::install_github(&#39;thomasp85/gganimate&#39;)
-library(gganimate)</code></pre>
-<p>Firstly, I always use the <strong>tidyverse</strong> package, because it contains <strong>dplyr</strong>, <strong>ggplot2</strong>, <strong>purrr</strong>… and some other unavoidable packages.</p>
+<pre><code>## Linking to ImageMagick 6.9.9.39
+## Enabled features: cairo, fontconfig, freetype, lcms, pango, rsvg, webp
+## Disabled features: fftw, ghostscript, x11</code></pre>
+<pre class="r"><code>library(gganimate)</code></pre>
+<p>Firstly, I always use the <strong>tidyverse</strong> 📦, because it contains <strong>dplyr</strong>, <strong>ggplot2</strong>, <strong>purrr</strong>… and some other unavoidable packages.</p>
 <p>Then, to deal with images, my favorite package is <a href="https://ropensci.org/tutorials/magick_tutorial/"><strong>magick</strong></a>, an other unavoidable package ! It allows to read/write/transform/convert images, and to make some beautiful GIF too. See the vignette for more informations, it’s really cool.</p>
 <p>To replace <strong>ggplot2</strong> points by some images, I find the <a href="https://cran.r-project.org/web/packages/ggimage/vignettes/ggimage.html"><strong>ggimage</strong></a> package. And to animate these images, the <a href="https://github.com/thomasp85/gganimate"><strong>gganimated</strong></a> package.</p>
 </div>
@@ -55,7 +54,7 @@ y &lt;- rep((-x0^2)/100 +1 ,3 )
 y &lt;- y + seq(0,3, length.out = length(y))
 y &lt;- c(y, rev(y))
 
-#just to have a look
+# just to have a look
 plot(y)</code></pre>
 <p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
@@ -64,15 +63,15 @@ plot(y)</code></pre>
 <p>Firstly, a tibble (a tidy data.frame if you don’t know yet) with the R trajectory <code>y</code>, the abscissa <code>x</code> and <code>x1</code> which will serve to animate R, and the R logo url directory in <code>image</code>.</p>
 <pre class="r"><code>ly &lt;- length(y)
 
-#first tibble for R trajectory
+# first tibble for R trajectory
 d &lt;- tibble(
-x = 1:ly,
-x1 = 1:ly,
-y = y,
-image = rep(&quot;https://www.r-project.org/logo/Rlogo.png&quot;,ly)
+  x = 1:ly,
+  x1 = 1:ly,
+  y = y,
+  image = rep(&quot;https://www.r-project.org/logo/Rlogo.png&quot;,ly)
 )</code></pre>
 <p>Then I decide to make a local copy of the R logo image, resizing it at 200px for witdh, because even if <strong>ggimage</strong> can deal with url images, it took a long time to do this with the 102 images. So I use the <strong>magick</strong> package to <code>read</code>, <code>scale</code>, and <code>write</code> the R logo.</p>
-<pre class="r"><code>#local copy of Rlogo
+<pre class="r"><code># local copy of Rlogo
 &quot;https://www.r-project.org/logo/Rlogo.png&quot; %&gt;%
   image_read() %&gt;%
   image_scale(&quot;200&quot;) %&gt;%
@@ -109,30 +108,31 @@ y3 = c(0.36,d$y[x3])
 y3 = y3 - 0.4
 
 d2 &lt;- tibble(
-x3 = x3+2,
-y3 = y3,
-
-hex = c(
-&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/blogdown.png&quot;,
-&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/devtools.png&quot;,
-&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/tibble.png&quot;,
-&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/pipe.png&quot;,
-&quot;https://github.com/thomasp85/gganimate/raw/master/man/figures/logo.png&quot;,
-&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png&quot;,
-&quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png&quot;
-)
+  x3 = x3+2,
+  y3 = y3,
+  hex = c(
+    &quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/blogdown.png&quot;,
+    &quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/devtools.png&quot;,
+    &quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/tibble.png&quot;,
+    &quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/pipe.png&quot;,
+    &quot;https://github.com/thomasp85/gganimate/raw/master/man/figures/logo.png&quot;,
+    &quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/tidyverse.png&quot;,
+    &quot;https://github.com/rstudio/hex-stickers/raw/master/PNG/ggplot2.png&quot;
+  )
 )</code></pre>
 <p>Now the part using <strong>magick</strong> to locally copy the images. To process all the images at once, I use the <code>map2_chr</code> function of the <strong>purrr</strong> package</p>
 <pre class="r"><code>d2$hex %&gt;%
   image_read() %&gt;%
   image_scale(&quot;200&quot;) -&gt; hex2</code></pre>
-<p><code>hex2</code> il a tibble, so I transform it in a list to give it to <code>map2_chr</code>. Why <code>map2_chr</code> and not just <code>map2</code> ? Because I want characters 😄</p>
+<p><code>hex2</code> il a tibble, so I transform it in a list to give it to <code>map2_chr</code>.
+Why <code>map2_chr</code> and not just <code>map2</code> ? Because I want characters 😄</p>
 <p>You can do the same with <code>map2</code> if you <code>unlist</code> the result.</p>
 <pre class="r"><code>hex3 &lt;- map2_chr(as.list(hex2), basename(d2$hex), image_write)
 
 d2 &lt;- d2 %&gt;%
   mutate(hex3 = hex3)</code></pre>
-<p>Once the column with the files names added to the tibble, we can plot it. I just have to change <code>ylim</code> of the ggplot because <code>min(y3) &lt; min(y)</code></p>
+<p>Once the column with the files names added to the tibble, we can plot it.
+I just have to change <code>ylim</code> of the ggplot because <code>min(y3) &lt; min(y)</code></p>
 <pre class="r"><code>gg &lt;- gg + 
   ylim(min(y3)-0.2,max(y)) +
   geom_image(data = d2, aes(x=x3, y=y3, image = hex3), size = .1, by = &#39;height&#39;)</code></pre>
@@ -140,7 +140,7 @@ d2 &lt;- d2 %&gt;%
 <pre class="r"><code>gg</code></pre>
 <p><img src="/post/2018-10-14-making-an-animated-ggplot_files/figure-html/unnamed-chunk-11-1.gif" /><!-- --></p>
 <p>Yes ! It’s better like this. If you love the result you can save it with <code>anim_save</code>.</p>
-<pre class="r"><code>#anim_save(&quot;saut_dR.gif&quot;)</code></pre>
+<pre class="r"><code># anim_save(&quot;saut_dR.gif&quot;)</code></pre>
 <p>I remove images locally copied.</p>
 <pre class="r"><code>unlink(c(&quot;Rlogo.png&quot;, hex3))</code></pre>
 <div id="thats-all-for-today" class="section level2">
