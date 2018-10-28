@@ -13,22 +13,21 @@ slug: playing-with-dplyr5000-part-1
 header: "post/2018-10-21-playing-with-dplyr5000-part-1_files/figure-html/unnamed-chunk-1-1.png"
 ---
 
+**dplyr5000** is a data package with the 5000 first travis builds of **dplyr**. 
+I would like to make a beautiful barplot with these data, inspired by 
+this [tweet from Mara Averick](https://twitter.com/dataandme/status/1050355574070751233).
 
-
-**dplyr5000** is a package with the 5000 first travis builds of **dplyr**. I would like to make a beautiful barplot with these data and 
-
-This plot is inspired by this [tweet of Mara Averick](https://twitter.com/dataandme/status/1050355574070751233).
-
-
+`r blogdown::shortcode_html("tweet", "1050355574070751233" )`
 
 # Packages
 
 [**gh**](https://github.com/r-lib/gh) allows to get data from github.  
 
-```{r, warning=FALSE}
-#devtools::install_github("r-lib/gh")
+```{r, warning=FALSE, results="hide", message = FALSE}
+# devtools::install_github("r-lib/gh")
+# devtools::install_github("romainfrancois/dplyr5000")
+
 library(gh)
-#devtools::install_github("romainfrancois/dplyr5000")
 library(dplyr5000)
 library(tidyverse)
 library(grid) 
@@ -68,7 +67,6 @@ grobHeight.custom_axis = heightDetails.custom_axis = function(x, ...)
 ## ##########
 ## END
 ## ##########
-
 ```
 
 
@@ -77,19 +75,16 @@ grobHeight.custom_axis = heightDetails.custom_axis = function(x, ...)
 I filter users with more than 40 travis builds. 
 
 ```{r}
-#tibble with results to plot
+# tibble with results to plot
 tib <- dplyr5000 %>% 
   group_by(user) %>% 
   tally(sort = TRUE) %>%
-  filter(!is.na(user)) %>%
-  filter(n> 40)
+  filter(!is.na(user), n > 40)
 ```
-
 
 ## Getting users avatar on github
 
 ```{r}
-
 get_github_avatar <- function(x){
   profil <- gh("/users/:username", username = x)
   image_read(profil[["avatar_url"]])
@@ -103,7 +98,6 @@ names(pix) <- tib$user
 ## Ggploting the results
 
 ```{r}
-
 tib %>%
   ggplot(aes(x= reorder(user,-n), y = n, fill = 1)) +
   geom_bar(stat = "identity") +
@@ -116,6 +110,5 @@ tib %>%
   theme(axis.text.x  = my_axis(pix, angle = 0), 
         axis.text.y  = element_text(size=14),
         axis.title.x = element_blank())
-
 ```
 
