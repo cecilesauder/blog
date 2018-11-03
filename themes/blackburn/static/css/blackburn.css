@@ -5,7 +5,7 @@
 
 .myheader{
   text-align:center;
-  font-size:200%;
+  font-size:300%;
   color:#660066;
 }
 
@@ -52,6 +52,20 @@ article > footer {
   float: right;
   text-align: right;
   overflow: hidden;
+}
+
+body{
+  font-family: Raleway;
+  font-size: 150%;
+}
+
+h1{
+  font-weight:bold;
+  font-size: 250%;
+}
+
+h2{
+  font-weight:bold;
 }
 
 #menu .brand {
