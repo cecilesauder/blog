@@ -16,6 +16,7 @@ slug: amstrdays-s-tweets
 header: "post/2018-11-18-amstrday-s-tweets_files/figure-html/unnamed-chunk-9-1.png"
 ---
 
+These lines of code have been lying around in a file for more than 2 months. I wrote them after [**SatRdays Amsterdam**](https://amsterdam2018.satrdays.org/) in September. 
 
 ## Packages installation
 
