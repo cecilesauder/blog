@@ -23,14 +23,14 @@ You can follow R-Ladies Montpellier on [twitter](https://twitter.com/RLadiesMont
 
 Here are my slides (made with xaringan) : 
 
-  - [Meetup 1](https://cecilesauder.netlify.com/RLadiesMeetups/meetup1_Tidyverse/Tidyverse.html) :
+  - [Meetup 1 : little talk about Tidyverse ](https://cecilesauder.netlify.com/RLadiesMeetups/meetup1_Tidyverse/Tidyverse.html) :
 
 ```{r, echo=FALSE}
 knitr::include_url('https://cecilesauder.netlify.com/RLadiesMeetups/meetup1_Tidyverse/tidyverse#1')
 ```
 
 
-  - [Meetup 2](https://cecilesauder.netlify.com/RLadiesMeetups/meetup2_Tidyverse_exercises/Tidyverse_exercises.html) : 
+  - [Meetup 2 : Let's code TogetheR - Tidyverse Exercises ](https://cecilesauder.netlify.com/RLadiesMeetups/meetup2_Tidyverse_exercises/Tidyverse_exercises.html) : 
   
 ```{r, echo=FALSE}
 
