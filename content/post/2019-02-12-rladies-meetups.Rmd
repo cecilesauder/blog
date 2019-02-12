@@ -31,7 +31,7 @@ Here are my slides (made with xaringan) :
 ```
 
 
-  - [Meetup 2](https://cecilesauder.netlify.com/RLadiesMeetups/meetup1_Tidyverse_exercises/Tidyverse_exercises.html) : 
+  - [Meetup 2](https://cecilesauder.netlify.com/RLadiesMeetups/meetup2_Tidyverse_exercises/Tidyverse_exercises.html) : 
   
 ```{r, echo=FALSE}
 
