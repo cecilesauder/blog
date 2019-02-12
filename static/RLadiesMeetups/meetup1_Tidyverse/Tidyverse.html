@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tidyverse</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Cécile Sauder" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link rel="stylesheet" href="my_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;Cécile SAUDER    
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+12/12/2018&lt;/span&gt;&lt;/div&gt; 
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/tidyverse.svg?sanitize=true)
+background-size: 550px
+background-position: 50% 50%
+
+
+---
+background-image: url(https://media.giphy.com/media/FHEjBpiqMwSuA/giphy.gif)
+background-size: 400px
+background-position: 85% 25%
+
+# Tidy data
+
+&lt;img src="img/wickham_president.jpg" width="250px" /&gt;
+
+--
+
+
+![](img/tidy_data1.png)
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/tidyverse.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# [www.tidyverse.org](www.tidyverse.org)
+
+
+
+
+```r
+#install.packages("tidyverse")
+
+library(tidyverse)
+```
+
+```
+## -- Attaching packages ------------------------------------------------------- tidyverse 1.2.1 --
+```
+
+```
+## v ggplot2 3.1.0     v purrr   0.2.5
+## v tibble  1.4.2     v dplyr   0.7.8
+## v tidyr   0.8.2     v stringr 1.3.1
+## v readr   1.1.1     v forcats 0.3.0
+```
+
+```
+## -- Conflicts ---------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+  
+  
+&lt;br&gt; 
+  
+&lt;img src="img/tidyband.png" width="1147" /&gt;
+
+
+---
+
+background-image: url('img/tidyverse.png')
+background-size: 900px
+background-position: 65% 45%
+
+
+---
+
+background-image: url('img/TMDB 5000 Movie Dataset _ Kaggle.png')
+background-size: 800px
+background-position: 50% 50%
+
+# Data
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/readr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Import data 
+
+
+```r
+*data_movies &lt;- read_csv("data/tmdb_5000_movies.csv")
+*data_credits &lt;- read_csv("data/tmdb_5000_credits.csv")
+
+data_movies
+```
+---
+
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/tibble.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Tibble
+
+
+```r
+data_movies &lt;- read_csv("data/tmdb_5000_movies.csv") 
+data_credits &lt;- read_csv("data/tmdb_5000_credits.csv")
+
+data_movies
+```
+
+```
+*## # A tibble: 4,803 x 20
+##    budget genres homepage     id keywords original_langua~ original_title
+##     &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;         
+##  1 2.37e8 "[{\"~ http://~  19995 "[{\"id~ en               Avatar        
+##  2 3.00e8 "[{\"~ http://~    285 "[{\"id~ en               Pirates of th~
+##  3 2.45e8 "[{\"~ http://~ 206647 "[{\"id~ en               Spectre       
+##  4 2.50e8 "[{\"~ http://~  49026 "[{\"id~ en               The Dark Knig~
+##  5 2.60e8 "[{\"~ http://~  49529 "[{\"id~ en               John Carter   
+##  6 2.58e8 "[{\"~ http://~    559 "[{\"id~ en               Spider-Man 3  
+##  7 2.60e8 "[{\"~ http://~  38757 "[{\"id~ en               Tangled       
+##  8 2.80e8 "[{\"~ http://~  99861 "[{\"id~ en               Avengers: Age~
+##  9 2.50e8 "[{\"~ http://~    767 "[{\"id~ en               Harry Potter ~
+## 10 2.50e8 "[{\"~ http://~ 209112 "[{\"id~ en               Batman v Supe~
+## # ... with 4,793 more rows, and 13 more variables: overview &lt;chr&gt;,
+## #   popularity &lt;dbl&gt;, production_companies &lt;chr&gt;,
+## #   production_countries &lt;chr&gt;, release_date &lt;date&gt;, revenue &lt;dbl&gt;,
+## #   runtime &lt;int&gt;, spoken_languages &lt;chr&gt;, status &lt;chr&gt;, tagline &lt;chr&gt;,
+## #   title &lt;chr&gt;, vote_average &lt;dbl&gt;, vote_count &lt;int&gt;
+```
+
+---
+
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/pipe.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Pipe data
+--
+
+.pull-left[
+
+- old way : **verb(subject, complements)**  
+
+
+```r
+head(data_movies,3)
+```
+
+.center[![](https://media.giphy.com/media/BgBf6pW9qOgQU/giphy.gif) ]
+
+]
+
+--
+
+- pipe way : **subject %&gt;% verb(complements)**
+
+
+```r
+data_movies %&gt;% head(3)
+```
+
+```
+## # A tibble: 3 x 20
+##   budget genres homepage     id keywords original_langua~ original_title
+##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;         
+## 1 2.37e8 "[{\"~ http://~  19995 "[{\"id~ en               Avatar        
+## 2 3.00e8 "[{\"~ http://~    285 "[{\"id~ en               Pirates of th~
+## 3 2.45e8 "[{\"~ http://~ 206647 "[{\"id~ en               Spectre       
+## # ... with 13 more variables: overview &lt;chr&gt;, popularity &lt;dbl&gt;,
+## #   production_companies &lt;chr&gt;, production_countries &lt;chr&gt;,
+## #   release_date &lt;date&gt;, revenue &lt;dbl&gt;, runtime &lt;int&gt;,
+## #   spoken_languages &lt;chr&gt;, status &lt;chr&gt;, tagline &lt;chr&gt;, title &lt;chr&gt;,
+## #   vote_average &lt;dbl&gt;, vote_count &lt;int&gt;
+```
+
+.center[![](https://media.giphy.com/media/4pvW2P5L1GmkM/giphy.gif)]
+
+---
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/purrr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Functional programming
+
+
+```r
+both &lt;- list("data_movies" = data_movies, "data_credits" = data_credits)
+
+both %&gt;%
+* map(names)
+```
+
+```
+## $data_movies
+##  [1] "budget"               "genres"               "homepage"            
+##  [4] "id"                   "keywords"             "original_language"   
+##  [7] "original_title"       "overview"             "popularity"          
+## [10] "production_companies" "production_countries" "release_date"        
+## [13] "revenue"              "runtime"              "spoken_languages"    
+## [16] "status"               "tagline"              "title"               
+## [19] "vote_average"         "vote_count"          
+## 
+## $data_credits
+## [1] "movie_id" "title"    "cast"     "crew"
+```
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/purrr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Functional programming
+
+
+```r
+both &lt;- list("data_movies" = data_movies, "data_credits" = data_credits)
+
+both %&gt;%
+  map(names)
+```
+
+```
+## $data_movies
+##  [1] "budget"               "genres"               "homepage"            
+*##  [4] "id"                   "keywords"             "original_language"   
+##  [7] "original_title"       "overview"             "popularity"          
+## [10] "production_companies" "production_countries" "release_date"        
+## [13] "revenue"              "runtime"              "spoken_languages"    
+## [16] "status"               "tagline"              "title"               
+## [19] "vote_average"         "vote_count"          
+## 
+## $data_credits
+*## [1] "movie_id" "title"    "cast"     "crew"
+```
+
+--
+- =&gt; Rename **id** to **movie_id** + join both
+---
+
+background-image: url(https://media.giphy.com/media/l41YouCUUcreUabHW/giphy.gif)
+background-size: 700px
+background-position: 50% 50%
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/dplyr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Rename variables
+
+```r
+both &lt;- data_movies %&gt;%
+* rename(movie_id = id) %&gt;%
+  left_join(data_credits)
+```
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/dplyr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Join data
+
+```r
+both &lt;- data_movies %&gt;%
+  rename(movie_id = id) %&gt;% 
+* left_join(data_credits)
+```
+
+```
+## Joining, by = c("movie_id", "title")
+```
+--
+
+
+```r
+both %&gt;% names()
+```
+
+```
+##  [1] "budget"               "genres"               "homepage"            
+##  [4] "movie_id"             "keywords"             "original_language"   
+##  [7] "original_title"       "overview"             "popularity"          
+## [10] "production_companies" "production_countries" "release_date"        
+## [13] "revenue"              "runtime"              "spoken_languages"    
+## [16] "status"               "tagline"              "title"               
+## [19] "vote_average"         "vote_count"           "cast"                
+## [22] "crew"
+```
+
+---
+
+
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:600px; overflow-x: scroll; width:800px; "&gt;&lt;table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; budget &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; genres &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; homepage &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; keywords &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; original_language &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; original_title &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; overview &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; popularity &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; production_companies &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; production_countries &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; release_date &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; revenue &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; runtime &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; spoken_languages &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; status &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; tagline &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; title &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; vote_average &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; vote_count &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.37e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 14, "name": "Fantasy"}, {"id": 878, "name": "Science Fiction"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://www.avatarmovie.com/ &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19995 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 1463, "name": "culture clash"}, {"id": 2964, "name": "future"}, {"id": 3386, "name": "space war"}, {"id": 3388, "name": "space colony"}, {"id": 3679, "name": "society"}, {"id": 3801, "name": "space travel"}, {"id": 9685, "name": "futuristic"}, {"id": 9840, "name": "romance"}, {"id": 9882, "name": "space"}, {"id": 9951, "name": "alien"}, {"id": 10148, "name": "tribe"}, {"id": 10158, "name": "alien planet"}, {"id": 10987, "name": "cgi"}, {"id": 11399, "name": "marine"}, {"id": 13065, "name": "soldier"}, {"id": 14643, "name": "battle"}, {"id": 14720, "name": "love affair"}, {"id": 165431, "name": "anti war"}, {"id": 193554, "name": "power relations"}, {"id": 206690, "name": "mind and soul"}, {"id": 209714, "name": "3d"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Avatar &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alien civilization. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 150.43758 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Ingenious Film Partners", "id": 289}, {"name": "Twentieth Century Fox Film Corporation", "id": 306}, {"name": "Dune Entertainment", "id": 444}, {"name": "Lightstorm Entertainment", "id": 574}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}, {"iso_3166_1": "GB", "name": "United Kingdom"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2009-12-10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2787965087 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 162 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}, {"iso_639_1": "es", "name": "Espa\u00f1ol"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Enter the World of Pandora. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Avatar &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11800 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3.00e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 12, "name": "Adventure"}, {"id": 14, "name": "Fantasy"}, {"id": 28, "name": "Action"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://disney.go.com/disneypictures/pirates/ &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 285 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 270, "name": "ocean"}, {"id": 726, "name": "drug abuse"}, {"id": 911, "name": "exotic island"}, {"id": 1319, "name": "east india trading company"}, {"id": 2038, "name": "love of one's life"}, {"id": 2052, "name": "traitor"}, {"id": 2580, "name": "shipwreck"}, {"id": 2660, "name": "strong woman"}, {"id": 3799, "name": "ship"}, {"id": 5740, "name": "alliance"}, {"id": 5941, "name": "calypso"}, {"id": 6155, "name": "afterlife"}, {"id": 6211, "name": "fighter"}, {"id": 12988, "name": "pirate"}, {"id": 157186, "name": "swashbuckler"}, {"id": 179430, "name": "aftercreditsstinger"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Pirates of the Caribbean: At World's End &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Captain Barbossa, long believed to be dead, has come back to life and is headed to the edge of the Earth with Will Turner and Elizabeth Swann. But nothing is quite as it seems. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 139.08262 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Walt Disney Pictures", "id": 2}, {"name": "Jerry Bruckheimer Films", "id": 130}, {"name": "Second Mate Productions", "id": 19936}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2007-05-19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 961000000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 169 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; At the end of the world, the adventure begins. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Pirates of the Caribbean: At World's End &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.45e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 80, "name": "Crime"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://www.sonypictures.com/movies/spectre/ &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 206647 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 470, "name": "spy"}, {"id": 818, "name": "based on novel"}, {"id": 4289, "name": "secret agent"}, {"id": 9663, "name": "sequel"}, {"id": 14555, "name": "mi6"}, {"id": 156095, "name": "british secret service"}, {"id": 158431, "name": "united kingdom"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Spectre &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A cryptic message from Bond’s past sends him on a trail to uncover a sinister organization. While M battles political forces to keep the secret service alive, Bond peels back the layers of deceit to reveal the terrible truth behind SPECTRE. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 107.37679 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Columbia Pictures", "id": 5}, {"name": "Danjaq", "id": 10761}, {"name": "B24", "id": 69434}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "GB", "name": "United Kingdom"}, {"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2015-10-26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 880674609 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 148 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "fr", "name": "Fran\u00e7ais"}, {"iso_639_1": "en", "name": "English"}, {"iso_639_1": "es", "name": "Espa\u00f1ol"}, {"iso_639_1": "it", "name": "Italiano"}, {"iso_639_1": "de", "name": "Deutsch"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A Plan No One Escapes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Spectre &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4466 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 28, "name": "Action"}, {"id": 80, "name": "Crime"}, {"id": 18, "name": "Drama"}, {"id": 53, "name": "Thriller"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://www.thedarkknightrises.com/ &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49026 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 849, "name": "dc comics"}, {"id": 853, "name": "crime fighter"}, {"id": 949, "name": "terrorist"}, {"id": 1308, "name": "secret identity"}, {"id": 1437, "name": "burglar"}, {"id": 3051, "name": "hostage drama"}, {"id": 3562, "name": "time bomb"}, {"id": 6969, "name": "gotham city"}, {"id": 7002, "name": "vigilante"}, {"id": 9665, "name": "cover-up"}, {"id": 9715, "name": "superhero"}, {"id": 9990, "name": "villainess"}, {"id": 10044, "name": "tragic hero"}, {"id": 13015, "name": "terrorism"}, {"id": 14796, "name": "destruction"}, {"id": 18933, "name": "catwoman"}, {"id": 156082, "name": "cat burglar"}, {"id": 156395, "name": "imax"}, {"id": 173272, "name": "flood"}, {"id": 179093, "name": "criminal underworld"}, {"id": 230775, "name": "batman"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; The Dark Knight Rises &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Following the death of District Attorney Harvey Dent, Batman assumes responsibility for Dent's crimes to protect the late attorney's reputation and is subsequently hunted by the Gotham City Police Department. Eight years later, Batman encounters the mysterious Selina Kyle and the villainous Bane, a new terrorist leader who overwhelms Gotham's finest. The Dark Knight resurfaces to protect a city that has branded him an enemy. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 112.31295 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Legendary Pictures", "id": 923}, {"name": "Warner Bros.", "id": 6194}, {"name": "DC Entertainment", "id": 9993}, {"name": "Syncopy", "id": 9996}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2012-07-16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1084939099 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; The Legend Ends &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; The Dark Knight Rises &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9106 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.60e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 878, "name": "Science Fiction"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://movies.disney.com/john-carter &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49529 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 818, "name": "based on novel"}, {"id": 839, "name": "mars"}, {"id": 1456, "name": "medallion"}, {"id": 3801, "name": "space travel"}, {"id": 7376, "name": "princess"}, {"id": 9951, "name": "alien"}, {"id": 10028, "name": "steampunk"}, {"id": 10539, "name": "martian"}, {"id": 10685, "name": "escape"}, {"id": 161511, "name": "edgar rice burroughs"}, {"id": 163252, "name": "alien race"}, {"id": 179102, "name": "superhuman strength"}, {"id": 190320, "name": "mars civilization"}, {"id": 195446, "name": "sword and planet"}, {"id": 207928, "name": "19th century"}, {"id": 209714, "name": "3d"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; John Carter &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; John Carter is a war-weary, former military captain who's inexplicably transported to the mysterious and exotic planet of Barsoom (Mars) and reluctantly becomes embroiled in an epic conflict. It's a world on the brink of collapse, and Carter rediscovers his humanity when he realizes the survival of Barsoom and its people rests in his hands. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 43.92699 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Walt Disney Pictures", "id": 2}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2012-03-07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 284139100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 132 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Lost in our world, found in another. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; John Carter &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2124 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.58e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 14, "name": "Fantasy"}, {"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://www.sonypictures.com/movies/spider-man3/ &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 559 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 851, "name": "dual identity"}, {"id": 1453, "name": "amnesia"}, {"id": 1965, "name": "sandstorm"}, {"id": 2038, "name": "love of one's life"}, {"id": 3446, "name": "forgiveness"}, {"id": 3986, "name": "spider"}, {"id": 4391, "name": "wretch"}, {"id": 4959, "name": "death of a friend"}, {"id": 5776, "name": "egomania"}, {"id": 5789, "name": "sand"}, {"id": 5857, "name": "narcism"}, {"id": 6062, "name": "hostility"}, {"id": 8828, "name": "marvel comic"}, {"id": 9663, "name": "sequel"}, {"id": 9715, "name": "superhero"}, {"id": 9748, "name": "revenge"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Spider-Man 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; The seemingly invincible Spider-Man goes up against an all-new crop of villain – including the shape-shifting Sandman. While Spider-Man’s superpowers are altered by an alien organism, his alter ego, Peter Parker, deals with nemesis Eddie Brock and also gets caught up in a love triangle. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 115.69981 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Columbia Pictures", "id": 5}, {"name": "Laura Ziskin Productions", "id": 326}, {"name": "Marvel Enterprises", "id": 19551}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2007-05-01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 890871626 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 139 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}, {"iso_639_1": "fr", "name": "Fran\u00e7ais"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; The battle within. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Spider-Man 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3576 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.60e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 16, "name": "Animation"}, {"id": 10751, "name": "Family"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://disney.go.com/disneypictures/tangled/ &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38757 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 1562, "name": "hostage"}, {"id": 2343, "name": "magic"}, {"id": 2673, "name": "horse"}, {"id": 3205, "name": "fairy tale"}, {"id": 4344, "name": "musical"}, {"id": 7376, "name": "princess"}, {"id": 10336, "name": "animation"}, {"id": 33787, "name": "tower"}, {"id": 155658, "name": "blonde woman"}, {"id": 162219, "name": "selfishness"}, {"id": 163545, "name": "healing power"}, {"id": 179411, "name": "based on fairy tale"}, {"id": 179431, "name": "duringcreditsstinger"}, {"id": 215258, "name": "healing gift"}, {"id": 234183, "name": "animal sidekick"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tangled &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; When the kingdom's most wanted-and most charming-bandit Flynn Rider hides out in a mysterious tower, he's taken hostage by Rapunzel, a beautiful and feisty tower-bound teen with 70 feet of magical, golden hair. Flynn's curious captor, who's looking for her ticket out of the tower where she's been locked away for years, strikes a deal with the handsome thief and the unlikely duo sets off on an action-packed escapade, complete with a super-cop horse, an over-protective chameleon and a gruff gang of pub thugs. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48.68197 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Walt Disney Pictures", "id": 2}, {"name": "Walt Disney Animation Studios", "id": 6125}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2010-11-24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 591794936 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; They're taking adventure to new lengths. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tangled &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3330 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.80e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 878, "name": "Science Fiction"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://marvel.com/movies/movie/193/avengers_age_of_ultron &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 99861 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 8828, "name": "marvel comic"}, {"id": 9663, "name": "sequel"}, {"id": 9715, "name": "superhero"}, {"id": 9717, "name": "based on comic book"}, {"id": 10629, "name": "vision"}, {"id": 155030, "name": "superhero team"}, {"id": 179431, "name": "duringcreditsstinger"}, {"id": 180547, "name": "marvel cinematic universe"}, {"id": 209714, "name": "3d"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Avengers: Age of Ultron &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 134.27923 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Marvel Studios", "id": 420}, {"name": "Prime Focus", "id": 15357}, {"name": "Revolution Sun Studios", "id": 76043}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2015-04-22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1405403694 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 141 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A New Age Has Come. &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Avengers: Age of Ultron &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6767 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 12, "name": "Adventure"}, {"id": 14, "name": "Fantasy"}, {"id": 10751, "name": "Family"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://harrypotter.warnerbros.com/harrypotterandthehalf-bloodprince/dvd/index.html &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 767 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 616, "name": "witch"}, {"id": 2343, "name": "magic"}, {"id": 3872, "name": "broom"}, {"id": 3884, "name": "school of witchcraft"}, {"id": 6333, "name": "wizardry"}, {"id": 10164, "name": "apparition"}, {"id": 10791, "name": "teenage crush"}, {"id": 12564, "name": "werewolf"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Harry Potter and the Half-Blood Prince &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; As Harry begins his sixth year at Hogwarts, he discovers an old book marked as 'Property of the Half-Blood Prince', and begins to learn more about Lord Voldemort's dark past. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 98.88564 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Warner Bros.", "id": 6194}, {"name": "Heyday Films", "id": 7364}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "GB", "name": "United Kingdom"}, {"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2009-07-07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 933959197 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 153 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dark Secrets Revealed &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Harry Potter and the Half-Blood Prince &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5293 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 14, "name": "Fantasy"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; http://www.batmanvsupermandawnofjustice.com/ &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 209112 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"id": 849, "name": "dc comics"}, {"id": 7002, "name": "vigilante"}, {"id": 9715, "name": "superhero"}, {"id": 9717, "name": "based on comic book"}, {"id": 9748, "name": "revenge"}, {"id": 163455, "name": "super powers"}, {"id": 195242, "name": "clark kent"}, {"id": 195243, "name": "bruce wayne"}, {"id": 229266, "name": "dc extended universe"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Batman v Superman: Dawn of Justice &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Fearing the actions of a god-like Super Hero left unchecked, Gotham City’s own formidable, forceful vigilante takes on Metropolis’s most revered, modern-day savior, while the world wrestles with what sort of hero it really needs. And with Batman and Superman at war with one another, a new threat quickly arises, putting mankind in greater danger than it’s ever known before. &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 155.79045 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "DC Comics", "id": 429}, {"name": "Atlas Entertainment", "id": 507}, {"name": "Warner Bros.", "id": 6194}, {"name": "DC Entertainment", "id": 9993}, {"name": "Cruel &amp;amp; Unusual Films", "id": 9995}, {"name": "RatPac-Dune Entertainment", "id": 41624}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_3166_1": "US", "name": "United States of America"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2016-03-23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 873260194 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 151 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"iso_639_1": "en", "name": "English"}] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Released &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Justice or revenge &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Batman v Superman: Dawn of Justice &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7004 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+---
+
+background-image: url(https://media.giphy.com/media/26gscNQHswYio5RBu/giphy.gif)
+background-size: 700px
+background-position: 50% 50%
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/dplyr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Select variables 
+
+```r
+data_movies &lt;- data_movies %&gt;%
+* select(title, budget, vote_average, production_companies)
+```
+
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:400px; overflow-x: scroll; width:800px; "&gt;&lt;table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; title &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; budget &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; vote_average &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; production_companies &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Avatar &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.37e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Ingenious Film Partners", "id": 289}, {"name": "Twentieth Century Fox Film Corporation", "id": 306}, {"name": "Dune Entertainment", "id": 444}, {"name": "Lightstorm Entertainment", "id": 574}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pirates of the Caribbean: At World's End &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.00e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Walt Disney Pictures", "id": 2}, {"name": "Jerry Bruckheimer Films", "id": 130}, {"name": "Second Mate Productions", "id": 19936}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spectre &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.45e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Columbia Pictures", "id": 5}, {"name": "Danjaq", "id": 10761}, {"name": "B24", "id": 69434}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; The Dark Knight Rises &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Legendary Pictures", "id": 923}, {"name": "Warner Bros.", "id": 6194}, {"name": "DC Entertainment", "id": 9993}, {"name": "Syncopy", "id": 9996}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; John Carter &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.60e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Walt Disney Pictures", "id": 2}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spider-Man 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.58e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Columbia Pictures", "id": 5}, {"name": "Laura Ziskin Productions", "id": 326}, {"name": "Marvel Enterprises", "id": 19551}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tangled &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.60e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Walt Disney Pictures", "id": 2}, {"name": "Walt Disney Animation Studios", "id": 6125}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Avengers: Age of Ultron &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.80e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Marvel Studios", "id": 420}, {"name": "Prime Focus", "id": 15357}, {"name": "Revolution Sun Studios", "id": 76043}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Harry Potter and the Half-Blood Prince &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "Warner Bros.", "id": 6194}, {"name": "Heyday Films", "id": 7364}] &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Batman v Superman: Dawn of Justice &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; [{"name": "DC Comics", "id": 429}, {"name": "Atlas Entertainment", "id": 507}, {"name": "Warner Bros.", "id": 6194}, {"name": "DC Entertainment", "id": 9993}, {"name": "Cruel &amp;amp; Unusual Films", "id": 9995}, {"name": "RatPac-Dune Entertainment", "id": 41624}] &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+
+
+
+---
+
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/dplyr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+
+# Add a column 
+
+
+
+
+```r
+data_movies &lt;- data_movies %&gt;%
+* mutate(Production = case_when(
+    str_detect(production_companies,"Disney") ~ "Disney",
+    str_detect(production_companies,"Marvel") ~ "Marvel",
+    str_detect(production_companies,"DC") ~ "DC",
+    TRUE ~ "Other"
+  )) 
+```
+
+
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/stringr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+
+
+# String manipulation
+
+
+
+
+```r
+data_movies &lt;- data_movies %&gt;%
+  mutate(Production = case_when(  
+*   str_detect(production_companies,"Disney") ~ "Disney",
+*   str_detect(production_companies,"Marvel") ~ "Marvel",
+*   str_detect(production_companies,"DC") ~ "DC",
+    TRUE ~ "Other"
+  )) 
+```
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/dplyr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+
+
+# Remove a column
+
+
+
+
+```r
+data_movies &lt;- data_movies %&gt;%
+  mutate(Production = case_when(  
+    str_detect(production_companies,"Disney") ~ "Disney", 
+    str_detect(production_companies,"Marvel") ~ "Marvel", 
+    str_detect(production_companies,"DC") ~ "DC",         
+    TRUE ~ "Other"
+  )) %&gt;%
+* select(-production_companies)
+```
+
+
+&lt;div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:300px; overflow-x: scroll; width:800px; "&gt;&lt;table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; title &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; budget &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; vote_average &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Production &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Avatar &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.37e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Other &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pirates of the Caribbean: At World's End &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.00e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Disney &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spectre &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.45e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Other &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; The Dark Knight Rises &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; DC &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; John Carter &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.60e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Disney &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Spider-Man 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.58e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Marvel &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tangled &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.60e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Disney &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Avengers: Age of Ultron &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.80e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Marvel &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Harry Potter and the Half-Blood Prince &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Other &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Batman v Superman: Dawn of Justice &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.50e+08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; DC &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/dplyr.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Filter
+
+Keep Disney, Marvel and DC movies
+
+
+
+```r
+data_movies2 &lt;- data_movies %&gt;%
+* filter(Production != "Other")
+```
+--
+## group_by, summarise, arrange
+
+```r
+data_movies2 %&gt;%
+* group_by(Production) %&gt;%
+* summarise(mean_vote = mean(vote_average)) %&gt;%
+* arrange(desc(mean_vote))
+```
+
+```
+## # A tibble: 3 x 2
+##   Production mean_vote
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 Marvel          6.41
+## 2 Disney          6.35
+## 3 DC              6.16
+```
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/ggplot2.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Visualize data 
+
+
+```r
+data_movies2 %&gt;%
+  ggplot(aes(x = budget, y = vote_average, 
+             col = Production, label = title)) +
+  geom_smooth() +
+  facet_wrap(~Production) 
+```
+
+![](Tidyverse_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+
+---
+
+background-image: url(https://github.com/rstudio/hex-stickers/raw/master/SVG/ggplot2.svg?sanitize=true)
+background-size: 100px
+background-position: 90% 3%
+
+# Visualize data 
+
+
+```r
+data_movies2 %&gt;%
+  ggplot(aes(x = budget, y = vote_average, 
+             col = Production, label = title)) +
+  geom_smooth() +
+  facet_wrap(~Production) +
+  geom_text(check_overlap = TRUE)
+```
+
+![](Tidyverse_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+
+---
+
+
+# Thanks!
+
+- [Cheat sheets](https://www.rstudio.com/resources/cheatsheets/)
+
+
+.center[![](https://media.giphy.com/media/nEMmyUp4hl1QOzovKh/giphy.gif)]
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan) with the [**R-Ladies theme**](https://github.com/rladies/resources/blob/master/xaringan-slides/how_to_use.md)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
