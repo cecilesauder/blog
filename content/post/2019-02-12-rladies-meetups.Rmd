@@ -17,11 +17,12 @@ header: "img/rladies.svg"
 
 # R-Ladies Montpellier meetups
 
-Since december 2018, I co-organised with [Criscely](https://twitter.com/CriscelyLP) the R-Ladies Montpellier [meetups](https://www.meetup.com/fr-FR/rladies-montpellier/). 
+Since december 2018, I co-organise with [Criscely](https://twitter.com/CriscelyLP) the R-Ladies Montpellier [meetups](https://www.meetup.com/fr-FR/rladies-montpellier/). 
 
 You can follow R-Ladies Montpellier on [twitter](https://twitter.com/RLadiesMontpel) and [github](https://github.com/r-ladies-montpellier).
 
-Here are my slides (made with xaringan) : 
+Here are my slides, made with [xaringan](https://github.com/yihui/xaringan) and
+the [R-Ladies theme](https://github.com/rladies/resources/blob/master/xaringan-slides/how_to_use.md): 
 
   - [Meetup 1 : little talk about Tidyverse](https://cecilesauder.netlify.com/RLadiesMeetups/meetup1_Tidyverse/Tidyverse.html) :
 
@@ -36,3 +37,13 @@ knitr::include_url('https://cecilesauder.netlify.com/RLadiesMeetups/meetup1_Tidy
 
 knitr::include_url('https://cecilesauder.netlify.com/rladiesmeetups/meetup2_tidyverse_exercises/tidyverse_exercises#1')
 ```
+
+You can find the complete code of the slides [here](https://github.com/cecilesauder/blog/tree/master/static/RLadiesMeetups).
+
+
+
+![](img/spoiler_alert.gif)
+
+And  I'm going to write a post very soon with some useful tips for making 
+xaringan slides, like how to make header and footer,  how to insert interactive 
+plots made with plotly or gganimate..
