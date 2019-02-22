@@ -1,0 +1,55 @@
+---
+title: Sentiment analysis of Umbrella Academy's scripts
+author: Cécile Sauder
+date: '2019-02-22'
+topics:
+  - scraping
+  - umbrella academy
+  - serie
+tags:
+  - rvest
+slug: umbrella-academy
+header: "img/rladies.svg"
+---
+
+
+
+# Scraping the scripts
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(glue)
+
+
+url <- 'https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-umbrella-academy-2019&season=1'
+
+#titles of the episodes
+episodes_titles <- url %>%
+  read_html() %>%
+  html_nodes('.season-episode-title') %>%
+  html_text()
+
+#url of the episodes
+episodes_urls <- url %>%
+  read_html() %>%
+  html_nodes('.season-episode-title') %>%
+  html_attr("href") %>%
+  map(~glue("https://www.springfieldspringfield.co.uk/{.}")) 
+
+#function to get the script of an episode
+get_script <- function(url){
+  url %>%
+    read_html() %>%
+    html_nodes(".scrolling-script-container") %>%
+    html_text()
+}
+
+episodes_scripts <- episodes_urls %>%
+  map(~get_script(.))
+
+df <- tibble(episodes_titles,  episodes_urls, episodes_scripts)
+
+
+```
+

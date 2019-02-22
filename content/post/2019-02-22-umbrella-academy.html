@@ -1,0 +1,71 @@
+---
+title: Sentiment analysis of Umbrella Academy's scripts
+author: Cécile Sauder
+date: '2019-02-22'
+topics:
+  - scraping
+  - umbrella academy
+  - serie
+tags:
+  - rvest
+slug: umbrella-academy
+header: "img/rladies.svg"
+---
+
+
+
+<div id="scraping-the-scripts" class="section level1">
+<h1>Scraping the scripts</h1>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.0.0     ✔ purrr   0.2.5
+## ✔ tibble  1.4.2     ✔ dplyr   0.7.6
+## ✔ tidyr   0.8.1     ✔ stringr 1.3.1
+## ✔ readr   1.1.1     ✔ forcats 0.3.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(rvest)</code></pre>
+<pre><code>## Le chargement a nécessité le package : xml2</code></pre>
+<pre><code>## 
+## Attachement du package : &#39;rvest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     pluck</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     guess_encoding</code></pre>
+<pre class="r"><code>library(glue)</code></pre>
+<pre><code>## 
+## Attachement du package : &#39;glue&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     collapse</code></pre>
+<pre class="r"><code>url &lt;- &#39;https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-umbrella-academy-2019&amp;season=1&#39;
+
+#titles of the episodes
+episodes_titles &lt;- url %&gt;%
+  read_html() %&gt;%
+  html_nodes(&#39;.season-episode-title&#39;) %&gt;%
+  html_text()
+
+#url of the episodes
+episodes_urls &lt;- url %&gt;%
+  read_html() %&gt;%
+  html_nodes(&#39;.season-episode-title&#39;) %&gt;%
+  html_attr(&quot;href&quot;) %&gt;%
+  map(~glue(&quot;https://www.springfieldspringfield.co.uk/{.}&quot;)) 
+
+#function to get the script of an episode
+get_script &lt;- function(url){
+  url %&gt;%
+    read_html() %&gt;%
+    html_nodes(&quot;.scrolling-script-container&quot;) %&gt;%
+    html_text()
+}
+
+episodes_scripts &lt;- episodes_urls %&gt;%
+  map(~get_script(.))
+
+df &lt;- tibble(episodes_titles,  episodes_urls, episodes_scripts)</code></pre>
+</div>
