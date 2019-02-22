@@ -4,46 +4,54 @@ author: Cécile Sauder
 date: '2019-02-22'
 topics:
   - scraping
+  - text mining
+  - sentiment analysis
   - umbrella academy
-  - serie
+  - series
 tags:
   - rvest
 slug: umbrella-academy
-header: "img/rladies.svg"
+header: "https://m.media-amazon.com/images/I/81pJBOc71wL._SS500_.jpg"
 ---
 
 
 
+<div id="why-umbrella-academy" class="section level1">
+<h1>Why Umbrella Academy ?</h1>
+<p>I’m a big fan of <a href="https://en.wikipedia.org/wiki/Ellen_Page">Ellen Page</a> ! I really love her 😍. <a href="https://www.imdb.com/title/tt0467406/">Juno</a> is one of my favorite movies, no, actually it’s even my favorite movie. Besides, the soundtrack is my ⏰ 🎶.<br />
+So I had to watch this series, and it is awesome ! (Okay, maybe I’m a little biased). I’ve only seen the first five episodes so far. I’m taking my time because I know I’ll be super sad 😭 when I’m done with the season. I’ll try not to spoil myself too much by analyzing the scripts… challenging !</p>
+<p align="center">
+<img src="https://tel.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Ftel.2F2018.2F10.2F08.2Ffc869c14-0bff-4651-aa98-37775ce1695f.2Ejpeg/540x400/quality/80/thumbnail.jpeg" />
+</p>
+</div>
 <div id="scraping-the-scripts" class="section level1">
 <h1>Scraping the scripts</h1>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.0.0     ✔ purrr   0.2.5
-## ✔ tibble  1.4.2     ✔ dplyr   0.7.6
-## ✔ tidyr   0.8.1     ✔ stringr 1.3.1
-## ✔ readr   1.1.1     ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(rvest)</code></pre>
-<pre><code>## Le chargement a nécessité le package : xml2</code></pre>
-<pre><code>## 
-## Attachement du package : &#39;rvest&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     pluck</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     guess_encoding</code></pre>
-<pre class="r"><code>library(glue)</code></pre>
-<pre><code>## 
-## Attachement du package : &#39;glue&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     collapse</code></pre>
-<pre class="r"><code>url &lt;- &#39;https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-umbrella-academy-2019&amp;season=1&#39;
-
-#titles of the episodes
+<p>To start, load the essential packages <strong>tidyverse</strong> to do everything tidy, <strong>rvest</strong> to scrap web pages and <strong>glue</strong> to make tidy paste.</p>
+<pre class="r"><code>library(tidyverse)
+library(rvest)
+library(glue)</code></pre>
+<p>Then, <a href="http://lmgtfy.com/?q=script+umbrella+academy">find a web page with the scripts of the series</a>, and put the url in <code>url</code>.</p>
+<pre class="r"><code>url &lt;- &#39;https://www.springfieldspringfield.co.uk/episode_scripts.php?tv-show=the-umbrella-academy-2019&amp;season=1&#39;</code></pre>
+<p align="center">
+<img src="https://media.giphy.com/media/3fibASpOsR4s94M1v4/giphy.gif" />
+</p>
+<p>I played a little with <a href="https://selectorgadget.com/">SelectorGadget</a> to find the class of what I wanted, <code>.season-episode-title</code> seemed a good one, so let’s see what it contains :</p>
+<pre class="r"><code>url %&gt;%
+  read_html() %&gt;%
+  html_nodes(&#39;.season-episode-title&#39;)</code></pre>
+<pre><code>## {xml_nodeset (10)}
+##  [1] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [2] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [3] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [4] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [5] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [6] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [7] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [8] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+##  [9] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...
+## [10] &lt;a href=&quot;view_episode_scripts.php?tv-show=the-umbrella-academy-2019 ...</code></pre>
+<p>Good, we can get episodes titles and <code>href</code> attribute gives the end the url of each episode, we just have to paste it to “<a href="https://www.springfieldspringfield.co.uk/" class="uri">https://www.springfieldspringfield.co.uk/</a>”.</p>
+<pre class="r"><code>#titles of the episodes
 episodes_titles &lt;- url %&gt;%
   read_html() %&gt;%
   html_nodes(&#39;.season-episode-title&#39;) %&gt;%
@@ -54,9 +62,9 @@ episodes_urls &lt;- url %&gt;%
   read_html() %&gt;%
   html_nodes(&#39;.season-episode-title&#39;) %&gt;%
   html_attr(&quot;href&quot;) %&gt;%
-  map(~glue(&quot;https://www.springfieldspringfield.co.uk/{.}&quot;)) 
-
-#function to get the script of an episode
+  map(~glue(&quot;https://www.springfieldspringfield.co.uk/{.}&quot;)) </code></pre>
+<p>If you go on <a href="https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-umbrella-academy-2019&amp;episode=s01e01">the web page of the first episode for example</a>, you’ll note that the script is in the class <code>.scrolling-script-container</code>. So I made a little function to get the script of an episode, then I applied it to the episodes urls list with <code>map</code>.</p>
+<pre class="r"><code>#function to get the script of an episode
 get_script &lt;- function(url){
   url %&gt;%
     read_html() %&gt;%
@@ -65,7 +73,11 @@ get_script &lt;- function(url){
 }
 
 episodes_scripts &lt;- episodes_urls %&gt;%
-  map(~get_script(.))
-
-df &lt;- tibble(episodes_titles,  episodes_urls, episodes_scripts)</code></pre>
+  map(~get_script(.))</code></pre>
+<p>Then I put all in a tibble.</p>
+<pre class="r"><code>df &lt;- tibble(episodes_titles,  episodes_urls, episodes_scripts)</code></pre>
+<p>Now we have a tidy data frame with all the scripts…</p>
+<p align="center">
+<img src="https://media.giphy.com/media/28FpALDPHljpalhdRa/giphy.gif" />
+</p>
 </div>
