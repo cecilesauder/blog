@@ -1,11 +1,9 @@
 ---
-title: Sentiment analysis of Umbrella Academy's scripts
+title: Scraping Umbrella Academy's scripts
 author: Cécile Sauder
 date: '2019-02-22'
 topics:
   - scraping
-  - text mining
-  - sentiment analysis
   - umbrella academy
   - series
 tags:
@@ -74,10 +72,11 @@ get_script &lt;- function(url){
 
 episodes_scripts &lt;- episodes_urls %&gt;%
   map(~get_script(.))</code></pre>
-<p>Then I put all in a tibble.</p>
-<pre class="r"><code>df &lt;- tibble(episodes_titles,  episodes_urls, episodes_scripts)</code></pre>
+<p>Then I put titles and scripts in a tibble.</p>
+<pre class="r"><code>df &lt;- tibble(episodes_titles, episodes_scripts)</code></pre>
 <p>Now we have a tidy data frame with all the scripts…</p>
 <p align="center">
 <img src="https://media.giphy.com/media/28FpALDPHljpalhdRa/giphy.gif" />
 </p>
+<p>Yes, that’s all for today, tomorrow I’ll analyze them, if 👶 wants it 😀</p>
 </div>
