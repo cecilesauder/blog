@@ -24,7 +24,7 @@ So I had to watch this series, and it is awesome ! (Okay, maybe I’m a little b
 </div>
 <div id="scraping-the-scripts" class="section level1">
 <h1>Scraping the scripts</h1>
-<p>To start, load the essential packages <strong>tidyverse</strong> to do everything tidy, <strong>rvest</strong> to scrap web pages and <strong>glue</strong> to make tidy paste.</p>
+<p>To start, load the essential packages, <strong>tidyverse</strong> to do everything tidy, <strong>rvest</strong> to scrap web pages and <strong>glue</strong> to make tidy paste.</p>
 <pre class="r"><code>library(tidyverse)
 library(rvest)
 library(glue)</code></pre>
@@ -71,9 +71,12 @@ get_script &lt;- function(url){
 }
 
 episodes_scripts &lt;- episodes_urls %&gt;%
-  map(~get_script(.))</code></pre>
+  map(~get_script(.)) %&gt;%
+  unlist()</code></pre>
 <p>Then I put titles and scripts in a tibble.</p>
-<pre class="r"><code>df &lt;- tibble(episodes_titles, episodes_scripts)</code></pre>
+<pre class="r"><code>df &lt;- tibble(episodes_titles, episodes_scripts)
+
+saveRDS(df, &quot;df.RDS&quot;)</code></pre>
 <p>Now we have a tidy data frame with all the scripts…</p>
 <p align="center">
 <img src="https://media.giphy.com/media/28FpALDPHljpalhdRa/giphy.gif" />

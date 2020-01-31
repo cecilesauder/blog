@@ -1,0 +1,122 @@
+---
+title: Playgrounds in Montpellier
+author: Cécile Sauder
+date: '2019-07-04'
+slug: playgrounds-in-montpellier
+categories: []
+tags:
+  - map
+  - Montpellier
+description: ''
+topics: []
+header: "https://www.montpellier.fr/uploads/Image/cf/WEB_CHEMIN_14638_1329123196.jpg"
+---
+
+As a mom, I'm always looking for new playgrounds for Lexie, but when you look in google map I can't find them `r emo::ji("disappointed")`.
+
+On the other hand, you can find in the open data of Montpellier several [datasets](http://data.montpellier3m.fr/datasets?query=aires%20de%20jeux%20Montpellier), I chose all those about the playgrounds of Montpellier. 
+
+I find some useful help in this [post](https://dominicroye.github.io/en/2018/accessing-openstreetmap-data-with-r/) from Dominic Royé
+
+
+```{r}
+#install the osmdata, sf, tidyverse and ggmap package
+if(!require("osmdata")) install.packages("osmdata")
+if(!require("tidyverse")) install.packages("tidyverse")
+if(!require("sf")) install.packages("sf")
+if(!require("ggmap")) install.packages("ggmap")
+
+#load packages
+library(tidyverse)
+library(osmdata)
+library(sf)
+library(ggmap)
+library(leaflet)
+```
+If someone on ubuntu has the same error as me installing *sf* : ``` configure: error: gdal-config not found or not executable. ```, you can solve it typing in the terminal : 
+
+```{bash}
+sudo apt-get install gdal-bin proj-bin libgdal-dev libproj-dev
+```
+
+Of course, this is not solving the problem at first time, then I had an other error : ```configure: error: upgrade GDAL to 1.11.4 or later ``` so I wrote :
+
+```{bash}
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+
+sudo apt-get update
+
+sudo apt-get install libgdal-dev
+```
+
+And after that I was able to install *sf* !
+
+Well, now let's see
+
+
+```{r}
+available_features()
+
+available_tags("amenity")
+
+available_tags("leisure")
+
+#building the query
+q <- getbb("Montpellier")%>%
+      opq()%>%
+       add_osm_feature("amenity", "kindergarten")
+
+str(q) #query structure
+
+playground <- osmdata_sf(q)
+playground
+
+```
+
+
+Ok la suite
+
+
+
+Ce que j'ai fait avant et qu'il faudrait ptet merger mais on verra 
+
+```{r}
+#our background map
+mad_map <- get_map(getbb("Montpellier"),maptype = "toner-background")
+
+#final map
+ggmap(mad_map)+
+  geom_sf(data=playground$osm_points,
+          inherit.aes =FALSE,
+          colour="#238443",
+          fill="#004529",
+          alpha=.5,
+          size=4,
+          shape=21)+
+  labs(x="",y="")
+```
+
+Ok this is not too bad, but I can't zoom to see the street names. For that, there is the *leaflet* package.
+
+```{r}
+
+```
+
+
+```{r}
+playgrounds_by_type <- read_csv("http://data.montpellier3m.fr/sites/default/files/ressources/VilleMTP_MTP_JeuEnfantType.csv", 
+                                locale = readr::locale(encoding = "latin1"))
+
+playgrounds_by_age <- read_csv("http://data.montpellier3m.fr/sites/default/files/ressources/VilleMTP_MTP_JeuEnfantAge.csv", 
+                               locale = readr::locale(encoding = "latin1"))
+
+playgrounds_osm <- read_csv("http://data.montpellier3m.fr/sites/default/files/ressources/OSM_Metropole_aire_de_jeu.csv")
+```
+
+Note that to have correctly some french fuck*** character as **à** I had to add ``` locale = readr::locale(encoding = "latin1") ```. 
+
+
+```{r}
+
+```
+

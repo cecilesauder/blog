@@ -1,0 +1,64 @@
+---
+title: Analysis of Umbrella Academy's scripts
+author: Cécile Sauder
+date: '2019-02-23'
+topics:
+  - text mining
+  - umbrella academy
+  - series
+tags:
+  - tidytext
+slug: umbrella-academy
+header: "https://m.media-amazon.com/images/I/81pJBOc71wL._SS500_.jpg"
+---
+
+[The bible of text mining with R](https://www.tidytextmining.com/) (by Julia Silge and David Robinson) is very, very helpful !
+
+I would like to see the evolution of the characters through the episodes but the scripts that I found no permit to do this because they don't precise who is speaking `r emo::ji("disappointed")`. 
+
+Well, you have the scripts in a data frame, but not very tidy.
+
+
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidytext)
+```
+
+# Words frequency
+
+```{r}
+
+df <- readRDS("df.RDS") %>%
+  mutate(episode_number = str_sub(episodes_titles, 1, 1),
+         episode_title = str_sub(episodes_titles, 4),
+         script = str_remove_all(episodes_scripts, "\\[.*\\]")) %>%
+  mutate(script = str_remove(script, "1")) %>%
+  select(-episodes_scripts, -episodes_titles) 
+
+df <- df %>%
+  unnest_tokens(word, script, token = "words", to_lower = TRUE) %>%
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE) %>%
+  filter(n>20)
+
+ggplot(df[1:25,], aes(reorder(word,n), n, fill = "skyblue")) + 
+  geom_bar(stat = "identity") +
+  #facet_wrap(~episode_number, nrow = 1) +
+  
+
+
+  geom_text(aes(label= as.character(n)), check_overlap = TRUE, size = 4) + 
+  coord_flip() + 
+  xlab(" ") 
+
+
+
+
+
+```
+
+
+
+
+Yes, that's all for today, tomorrow I'll analyze them, if `r emo::ji("baby")` wants it `r emo::ji("grinning")`

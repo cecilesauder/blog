@@ -1,0 +1,41 @@
+---
+title: Analysis of Umbrella Academy's scripts
+author: Cécile Sauder
+date: '2019-02-23'
+topics:
+  - text mining
+  - umbrella academy
+  - series
+tags:
+  - tidytext
+slug: umbrella-academy
+header: "https://m.media-amazon.com/images/I/81pJBOc71wL._SS500_.jpg"
+---
+
+
+
+<p><a href="https://www.tidytextmining.com/">The bible of text mining with R</a> (by Julia Silge and David Robinson) is very, very helpful !</p>
+<p>Well, you have the scripts in a data frame, but to have a tidy text</p>
+<pre class="r"><code>library(tidyverse)
+library(tidytext)</code></pre>
+<div id="words-frequency" class="section level1">
+<h1>Words frequency</h1>
+<pre class="r"><code>df &lt;- readRDS(&quot;df.RDS&quot;)
+df %&gt;%
+  unnest_tokens(word, episodes_scripts, token = &quot;sentences&quot;, to_lower = FALSE) </code></pre>
+<pre><code>## # A tibble: 5,830 x 2
+##    episodes_titles     word                                               
+##    &lt;chr&gt;               &lt;chr&gt;                                              
+##  1 10. The White Viol… 1     Reggie.                                      
+##  2 10. The White Viol… Don&#39;t you look dapper?                             
+##  3 10. The White Viol… Well, I thought it was right   to buy something sp…
+##  4 10. The White Viol… As you requested.                                  
+##  5 10. The White Viol… I didn&#39;t realize that  you felt up to playing.     
+##  6 10. The White Viol… I don&#39;t.                                           
+##  7 10. The White Viol… I want you to take it with you.                    
+##  8 10. The White Viol… No, my love.                                       
+##  9 10. The White Viol… Please.                                            
+## 10 10. The White Viol… Find someone   who&#39;ll love it as much as I have.   
+## # ... with 5,820 more rows</code></pre>
+<p>Yes, that’s all for today, tomorrow I’ll analyze them, if 👶 wants it 😀</p>
+</div>
